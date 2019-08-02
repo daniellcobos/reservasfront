@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -166,3 +167,21 @@ REST_FRAMEWORK = {
     ),
 }
 SITE_ID = 1
+CORS_ORIGIN_WHITELIST = (
+    'https://google.com',
+    'https://hostname.example.com',
+    'https://localhost:8000',
+    'https://localhost:4200',
+    'https://127.0.0.1:9000'
+)
+CORS_ALLOW_METHODS = (
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+)
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=900),
+}

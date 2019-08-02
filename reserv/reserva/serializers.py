@@ -55,12 +55,45 @@ class InduserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id','email','name','fondos','ciudad','ReservH','ReservBR',)
 class ReservHaSerializer(serializers.ModelSerializer):
-    habitacion =serializers.PrimaryKeyRelatedField(queryset= Habitacion.objects.all())
+    habitacion =serializers.SlugRelatedField(queryset= Habitacion.objects.all(), slug_field='numero')
+    
+    def validate(self, data):
+        habt= str(data['habitacion'])
+        
+        hab= Habitacion.objects.filter(numero=habt).values('capacidad')
+        habcap= hab[0]['capacidad']
+        if  data['cantidad'] > habcap:
+            raise serializers.ValidationError("La cantidad de personas excede la capacidad de la habitacion")
+            
+        return data
     class Meta:
         model = ReservaH
-        fields = ('diaReserva','diaReservado','cantidad','habitacion')
+        fields = ('reservante','diaReserva','diaReservado','cantidad','habitacion')
+
 class ReservBReSerializer(serializers.ModelSerializer):
     mesa = serializers.PrimaryKeyRelatedField(queryset=Mesa.objects.all())
+    def validate(self, data):
+        mesc= str(data['mesa'])
+        
+        messsa= Mesa.objects.filter(numero=mesc).values('capacidad')
+        mesacap= messsa[0]['capacidad']
+        if  data['cantidad'] > mesacap:
+            raise serializers.ValidationError("La cantidad de personas excede la capacidad de la mesa")
+        return data
     class Meta:
         model = ReservaBR
-        fields = ('diaReserva','diaReservado','horaReservada','cantidad','mesa')
+        fields = ('reservante','diaReserva','diaReservado','horaReservada','cantidad','mesa')
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id','email','name','fondos','ciudad','password')
+        extra_kwargs = {
+          'password': {'write_only': True}
+        }
+    def create(self, validated_data):
+        password = validated_data.pop('password', None)
+        instance = self.Meta.model(**validated_data)
+        if password is not None:
+            instance.set_password(password)
+        instance.save()
+        return instance
