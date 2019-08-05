@@ -8,5 +8,6 @@ admin.site.register(Habitacion)
 admin.site.register(Mesa)
 admin.site.register(ReservaH)
 admin.site.register(ReservaBR)
-
+admin.site.register(CapacidadH)
+admin.site.register(CapacidadBR)
 

@@ -5,6 +5,7 @@ class User(AbstractUser):
     name = models.CharField(blank=True, max_length=255)
     fondos = models.IntegerField(blank=True, default=0)
     ciudad = models.CharField(blank=True, max_length=55)
+    admin = models.BooleanField(default=False)
     def __str__(self):
         return self.email
 
@@ -13,6 +14,7 @@ class RestBar(models.Model):
     direccion = models.CharField(blank=True, max_length=255)
     tipo = models.CharField(blank=True, max_length=55)
     ciudad = models.CharField(blank=True, max_length=55)
+    dueño = models.ForeignKey(User, related_name=("Dueñob"), on_delete=models.CASCADE)
     def __str__(self):
         return self.nombre
 
@@ -21,6 +23,7 @@ class Hotel(models.Model):
     direccion = models.CharField(blank=True, max_length=255)
     tipo = models.CharField(blank=True, max_length=55)
     ciudad = models.CharField(blank=True, max_length=55)
+    dueño = models.ForeignKey(User, related_name=("Dueñoh"), on_delete=models.CASCADE)
     def __str__(self):
         return self.nombre
 
@@ -38,13 +41,13 @@ class Mesa(models.Model):
         return str(self.numero)
 class CapacidadH(models.Model):
     dia = models.DateField( auto_now=False, auto_now_add=False)
-    libre = models.BooleanField(default=False)
+    libre = models.BooleanField(default=True)
     habitacion = models.ForeignKey(Habitacion, related_name='CapacidadH', on_delete=models.CASCADE)
 
 class CapacidadBR(models.Model):
     dia = models.DateField( auto_now=False, auto_now_add=False)
     hora = models.TimeField( auto_now=False, auto_now_add=False)
-    libre = models.BooleanField(default=False)
+    libre = models.BooleanField(default=True)
     mesa = models.ForeignKey(Mesa, related_name='CapacidadBR', on_delete=models.CASCADE)
 class ReservaH(models.Model):
     reservante = models.ForeignKey(User,related_name='ReservH', on_delete=models.CASCADE)

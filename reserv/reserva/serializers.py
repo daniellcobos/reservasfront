@@ -9,7 +9,7 @@ class HotelListSerializer(serializers.ModelSerializer):
 class RestBarListSerializer(serializers.ModelSerializer):
     class Meta:
         model = RestBar
-        fields = '__all__'
+        fields = ('nombre','tipo','ciudad','direccion')
 
 class MesaSerializer(serializers.ModelSerializer):
     restbar = serializers.SlugRelatedField(
@@ -59,12 +59,23 @@ class ReservHaSerializer(serializers.ModelSerializer):
     
     def validate(self, data):
         habt= str(data['habitacion'])
-        
+        date = data['diaReservado']
+        habc= Habitacion.objects.get(numero=habt)
         hab= Habitacion.objects.filter(numero=habt).values('capacidad')
         habcap= hab[0]['capacidad']
+        
         if  data['cantidad'] > habcap:
             raise serializers.ValidationError("La cantidad de personas excede la capacidad de la habitacion")
-            
+        elif CapacidadH.objects.filter(habitacion=habc).filter(dia=date).exists():
+         cphab = CapacidadH.objects.filter(habitacion=habc).get(dia=date)
+         if not cphab.libre:
+            raise serializers.ValidationError("Esta ocupada para este dia")
+         else:
+             cphab.libre=True
+             cphab.save()
+        else: 
+           newcup= CapacidadH(dia=date,libre=False,habitacion=habc)
+           newcup.save()
         return data
     class Meta:
         model = ReservaH
@@ -74,11 +85,23 @@ class ReservBReSerializer(serializers.ModelSerializer):
     mesa = serializers.PrimaryKeyRelatedField(queryset=Mesa.objects.all())
     def validate(self, data):
         mesc= str(data['mesa'])
-        
+        date = data['diaReservado']
+        time = data['horaReservada']
+        messc= Mesa.objects.get(numero=mesc)
         messsa= Mesa.objects.filter(numero=mesc).values('capacidad')
         mesacap= messsa[0]['capacidad']
         if  data['cantidad'] > mesacap:
             raise serializers.ValidationError("La cantidad de personas excede la capacidad de la mesa")
+        elif CapacidadBR.objects.filter(mesa=messc).filter(dia=date).filter(hora=time).exists():
+         cpmes = CapacidadBR.objects.filter(mesa=messc).filter(dia=date).get(hora=time)
+         if not cpmes.libre:
+            raise serializers.ValidationError("Esta ocupada para este dia y hora")
+         else:
+             cpmes.libre = True
+             cpmes.save()
+        else:
+           newcup= CapacidadBR(dia=date,hora=time,libre=False,mesa=messc)
+           newcup.save()
         return data
     class Meta:
         model = ReservaBR
