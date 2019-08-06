@@ -16,16 +16,16 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = InduserSerializer
     
 class ReservHDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = ReservaH.objects.all()
+    queryset = ReservaD.objects.all()
     serializer_class = ReservHSerializer
 class ReservHList(generics.ListCreateAPIView):
-    queryset = ReservaH.objects.all()
+    queryset = ReservaD.objects.all()
     serializer_class = ReservHaSerializer
 class ReservBRList(generics.ListCreateAPIView):
     queryset = ReservaBR.objects.all()
     serializer_class = ReservBReSerializer
 class HotelList(generics.ListCreateAPIView):
-    queryset = Hotel.objects.all()
+    queryset = Discobar.objects.all()
     serializer_class = HotelListSerializer
  
 class RestBarList(generics.ListCreateAPIView):
@@ -33,7 +33,7 @@ class RestBarList(generics.ListCreateAPIView):
     serializer_class = RestBarListSerializer
 
 class HotelDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Hotel.objects.all()
+    queryset = Discobar.objects.all()
     serializer_class = HotelSerializer
 class RestBarDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = RestBar.objects.all()

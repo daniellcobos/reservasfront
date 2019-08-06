@@ -3,11 +3,11 @@ from reserva.models import *
 # Register your models here.
 admin.site.register(User)
 admin.site.register(RestBar)
-admin.site.register(Hotel)
-admin.site.register(Habitacion)
+admin.site.register(Discobar)
+admin.site.register(MesaD)
 admin.site.register(Mesa)
-admin.site.register(ReservaH)
+admin.site.register(ReservaD)
 admin.site.register(ReservaBR)
-admin.site.register(CapacidadH)
+admin.site.register(CapacidadD)
 admin.site.register(CapacidadBR)
 

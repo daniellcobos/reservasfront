@@ -18,19 +18,19 @@ class RestBar(models.Model):
     def __str__(self):
         return self.nombre
 
-class Hotel(models.Model):
+class Discobar(models.Model):
     nombre = models.CharField(blank=True, max_length=255)
     direccion = models.CharField(blank=True, max_length=255)
     tipo = models.CharField(blank=True, max_length=55)
     ciudad = models.CharField(blank=True, max_length=55)
-    dueño = models.ForeignKey(User, related_name=("Dueñoh"), on_delete=models.CASCADE)
+    dueño = models.ForeignKey(User, related_name=("Dueñod"), on_delete=models.CASCADE)
     def __str__(self):
         return self.nombre
 
-class Habitacion(models.Model):
+class MesaD(models.Model):
     numero = models.IntegerField(primary_key=True, unique= True)
     capacidad = models.IntegerField()
-    hotel = models.ForeignKey(Hotel, related_name='habitacion', on_delete=models.CASCADE)
+    discobar = models.ForeignKey(Discobar, related_name='MesaD', on_delete=models.CASCADE)
     def __str__(self):
         return str(self.numero)
 class Mesa(models.Model):
@@ -39,22 +39,22 @@ class Mesa(models.Model):
     restbar = models.ForeignKey(RestBar, related_name='mesa', on_delete=models.CASCADE)    
     def __str__(self):
         return str(self.numero)
-class CapacidadH(models.Model):
+class CapacidadD(models.Model):
     dia = models.DateField( auto_now=False, auto_now_add=False)
     libre = models.BooleanField(default=True)
-    habitacion = models.ForeignKey(Habitacion, related_name='CapacidadH', on_delete=models.CASCADE)
+    mesad = models.ForeignKey(MesaD, related_name='CapacidadH', on_delete=models.CASCADE)
 
 class CapacidadBR(models.Model):
     dia = models.DateField( auto_now=False, auto_now_add=False)
     hora = models.TimeField( auto_now=False, auto_now_add=False)
     libre = models.BooleanField(default=True)
     mesa = models.ForeignKey(Mesa, related_name='CapacidadBR', on_delete=models.CASCADE)
-class ReservaH(models.Model):
+class ReservaD(models.Model):
     reservante = models.ForeignKey(User,related_name='ReservH', on_delete=models.CASCADE)
     diaReserva = models.DateTimeField(  auto_now_add=True)
     diaReservado = models.DateField( auto_now=False, auto_now_add=False)
     cantidad = models.IntegerField(default=0)
-    habitacion = models.ForeignKey(Habitacion, related_name='ReservaHab', on_delete=models.CASCADE)
+    mesad = models.ForeignKey(MesaD, related_name='ReservaDis', on_delete=models.CASCADE)
 class ReservaBR(models.Model):
     reservante = models.ForeignKey(User,related_name='ReservBR', on_delete=models.CASCADE)
     diaReserva = models.DateTimeField( auto_now_add=True)

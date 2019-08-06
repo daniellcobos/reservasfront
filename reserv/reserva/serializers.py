@@ -4,7 +4,7 @@ from rest_framework import serializers
 
 class HotelListSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Hotel
+        model = Discobar
         fields = ('nombre','tipo','ciudad','direccion')
 class RestBarListSerializer(serializers.ModelSerializer):
     class Meta:
@@ -21,28 +21,28 @@ class MesaSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class HabitacionSerializer(serializers.ModelSerializer):
-    hotel = serializers.SlugRelatedField(
+    discobar = serializers.SlugRelatedField(
     slug_field='nombre',
     read_only=True,
     )
     class Meta:
-        model = Habitacion
+        model = MesaD
         fields = '__all__'
 class HotelSerializer(serializers.ModelSerializer):
-    habitacion = HabitacionSerializer(many=True,read_only=True)
+    mesad = HabitacionSerializer(many=True,read_only=True)
     class Meta:
-        model = Hotel
-        fields = ('nombre','tipo','ciudad','direccion','habitacion')
+        model = Discobar
+        fields = ('nombre','tipo','ciudad','direccion','mesad')
 class RBSerializer(serializers.ModelSerializer):
     mesa = MesaSerializer(many=True,read_only=True)
     class Meta:
-        model = Hotel
+        model = RestBar
         fields = ('nombre','tipo','ciudad','direccion', 'mesa')
 class ReservHSerializer(serializers.ModelSerializer):
-    habitacion =HabitacionSerializer(read_only=True)
+    mesad =HabitacionSerializer(read_only=True)
     class Meta:
-        model = ReservaH
-        fields = ('diaReserva','diaReservado','cantidad','habitacion')
+        model = ReservaD
+        fields = ('diaReserva','diaReservado','cantidad','mesad')
 class ReservBRSerializer(serializers.ModelSerializer):
     mesa = MesaSerializer(many=True,read_only=True)
     class Meta:
@@ -55,31 +55,31 @@ class InduserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id','email','name','fondos','ciudad','ReservH','ReservBR',)
 class ReservHaSerializer(serializers.ModelSerializer):
-    habitacion =serializers.SlugRelatedField(queryset= Habitacion.objects.all(), slug_field='numero')
+    mesad =serializers.SlugRelatedField(queryset= MesaD.objects.all(), slug_field='numero')
     
     def validate(self, data):
-        habt= str(data['habitacion'])
+        habt= str(data['mesad'])
         date = data['diaReservado']
-        habc= Habitacion.objects.get(numero=habt)
-        hab= Habitacion.objects.filter(numero=habt).values('capacidad')
+        habc= MesaD.objects.get(numero=habt)
+        hab= MesaD.objects.filter(numero=habt).values('capacidad')
         habcap= hab[0]['capacidad']
         
         if  data['cantidad'] > habcap:
-            raise serializers.ValidationError("La cantidad de personas excede la capacidad de la habitacion")
-        elif CapacidadH.objects.filter(habitacion=habc).filter(dia=date).exists():
-         cphab = CapacidadH.objects.filter(habitacion=habc).get(dia=date)
+            raise serializers.ValidationError("La cantidad de personas excede la capacidad de la mesad")
+        elif CapacidadD.objects.filter(mesad=habc).filter(dia=date).exists():
+         cphab = CapacidadD.objects.filter(mesad=habc).get(dia=date)
          if not cphab.libre:
             raise serializers.ValidationError("Esta ocupada para este dia")
          else:
              cphab.libre=True
              cphab.save()
         else: 
-           newcup= CapacidadH(dia=date,libre=False,habitacion=habc)
+           newcup= CapacidadD(dia=date,libre=False,mesad=habc)
            newcup.save()
         return data
     class Meta:
-        model = ReservaH
-        fields = ('reservante','diaReserva','diaReservado','cantidad','habitacion')
+        model = ReservaD
+        fields = ('reservante','diaReserva','diaReservado','cantidad','mesad')
 
 class ReservBReSerializer(serializers.ModelSerializer):
     mesa = serializers.PrimaryKeyRelatedField(queryset=Mesa.objects.all())
