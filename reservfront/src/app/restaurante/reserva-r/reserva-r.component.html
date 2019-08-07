@@ -1,1 +1,21 @@
-<p>reserva-r works!</p>
+<div class= "section">
+<div class="list is-hoverable">
+<p class="list-item" >
+ Nombre: {{restaurante.nombre}}
+</p>
+<p class="list-item" >
+ Tipo: {{restaurante.tipo}}
+</p>
+<p class="list-item" >
+ Direccion: {{restaurante.direccion}}
+</p>
+</div>
+ <div class="columms">
+  <div class="column is-multiline"  *ngFor="let mesa of restaurante.mesa">
+   <p> Mesa Numero :{{mesa.numero}}</p>
+   <p> Capacidad :{{mesa.capacidad}}</p>
+
+  </div>
+ </div>
+</div>
+
