@@ -39,7 +39,8 @@ export class ReservaRComponent implements OnInit {
     const diar = this.reservForm.value.dia;
     const horar = this.reservForm.value.hora;
     const cantidadr = this.reservForm.value.cant;
-    const reserva = {reservante: 0, dia: diar, hora: horar, cantidad: cantidadr, mesa: this.mesa.id};
+    const reserva = {reservante: 1, diaReservado: diar, horaReservada: horar, cantidad: cantidadr, mesa: this.mesa.id};
     console.log(reserva);
+    this.rservice.makeReserva(reserva);
   }
 }

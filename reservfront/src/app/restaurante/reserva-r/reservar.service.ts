@@ -19,4 +19,22 @@ export  class ReservarService {
       )
     );
 }
+  makeReserva(reserva: object) {
+    const httpOptions = {
+
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        // 'Authorization': 'JWT ' + this.suservice.token    // this is our token from the UserService (see Part 1)
+      })
+    };
+
+
+    return this.http.post('http://localhost:8000/rsv/reservbr', reserva , httpOptions) .subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error.error)
+    );
+
+
+
+  }
 }
