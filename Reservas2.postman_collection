@@ -1,0 +1,267 @@
+{
+	"info": {
+		"_postman_id": "8ceca90a-1a55-4634-a394-b416d12d5b9e",
+		"name": "Reservas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8000/rsv/reservd",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "reservante",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "diaReservado",
+							"value": "2011-05-23",
+							"type": "text"
+						},
+						{
+							"key": "mesad",
+							"value": "15",
+							"type": "text"
+						},
+						{
+							"key": "cantidad",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/rsv/reservd",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"rsv",
+						"reservd"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/rsv/reservd",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "reservante",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "diaReservado",
+							"value": "2011-05-23",
+							"type": "text"
+						},
+						{
+							"key": "mesad",
+							"value": "15",
+							"type": "text"
+						},
+						{
+							"key": "cantidad",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/rsv/reservd",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"rsv",
+						"reservd"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/rsv/restbares",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/rsv/restbares",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"rsv",
+						"restbares"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/rsv/reservd",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "reservante",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "diaReservado",
+							"value": "2011-05-23",
+							"type": "text"
+						},
+						{
+							"key": "mesad",
+							"value": "15",
+							"type": "text"
+						},
+						{
+							"key": "cantidad",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/rsv/reservd",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"rsv",
+						"reservd"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/rsv/reservbr",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "reservante",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "diaReservado",
+							"value": "2011-05-23",
+							"type": "text"
+						},
+						{
+							"key": "mesa",
+							"value": "15",
+							"type": "text"
+						},
+						{
+							"key": "cantidad",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "horaReservada",
+							"value": "18:30",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/rsv/reservbr",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"rsv",
+						"reservbr"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/rsv/reservbr",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "reservante",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "diaReservado",
+							"value": "2011-05-23",
+							"type": "text"
+						},
+						{
+							"key": "mesa",
+							"value": "15",
+							"type": "text"
+						},
+						{
+							"key": "cantidad",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "horaReservada",
+							"value": "18:30",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/rsv/reservbr",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"rsv",
+						"reservbr"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

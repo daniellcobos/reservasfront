@@ -5,11 +5,11 @@ from rest_framework import serializers
 class HotelListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Discobar
-        fields = ('nombre','tipo','ciudad','direccion')
+        fields = ('id','nombre','tipo','ciudad','direccion')
 class RestBarListSerializer(serializers.ModelSerializer):
     class Meta:
         model = RestBar
-        fields = ('nombre','tipo','ciudad','direccion')
+        fields = ('id','nombre','tipo','ciudad','direccion')
 
 class MesaSerializer(serializers.ModelSerializer):
     restbar = serializers.SlugRelatedField(
