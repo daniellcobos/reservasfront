@@ -1,6 +1,7 @@
 
 <div class="list is-hoverable">
-<p class="list-item" *ngFor="let bar of bares">
+<a class="list-item" *ngFor="let bar of bares" routerLink="/bares/{{bar.id}}">
  {{bar.nombre}}
-</p>
+</a>
 </div>
+<router-outlet></router-outlet>

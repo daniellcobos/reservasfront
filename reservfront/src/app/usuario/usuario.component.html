@@ -1,1 +1,44 @@
-<p>usuario works!</p>
+<body>
+  <section class="section">
+    <div class="container">
+      <div class="heading">
+        
+        <h2 class="subtitle">
+          Bienvenido {{usuario.email}}
+        </h2>
+        <div class="list is-hoverable">
+            <div class="list_item">Fondos: {{usuario.fondos}}</div>
+            <div class="list_item">Ciudad: {{usuario.ciudad}}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+      <h2> Reservas en Restaurantes</h2>
+    <div class="columms">
+        <div class="column is-multiline"  *ngFor="let reserva of reservasbr">
+         <p> Restaurante : {{reserva.mesa.restbar}}</p>
+         <p> Mesa Numero : {{reserva.mesa.numero}}</p>
+         <p> Dia : {{reserva.diaReservado}}</p>
+         <p> Hora : {{reserva.horaReservada}}</p>
+          <div class="block">
+            <a class="button is-danger">Cancelar Reserva</a>
+          </div>
+        </div>
+       </div>
+  </section>
+  <section class="section">
+        <h2> Reservas en Bares</h2>
+        <div class="columms">
+            <div class="column is-multiline"  *ngFor="let reserva of reservasd">
+             <p> Bar : {{reserva.mesad.discobar}}</p>
+             <p> Mesa Numero : {{reserva.mesad.numero}}</p>
+             <p> Dia : {{reserva.diaReservado}}</p>
+              <div class="block">
+                <a class="button is-danger">Cancelar Reserva</a>
+              </div>
+            </div>
+           </div>
+      </section>
+   
+</body>

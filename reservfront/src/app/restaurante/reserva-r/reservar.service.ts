@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-
+import { AuthService } from 'src/app/auth/auth.service';
 @Injectable({
   providedIn: 'root'
 })
 export  class ReservarService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private auService: AuthService) { }
 
   getRestaurante(id: number) {
     return this.http.get('http://localhost:8000/rsv/restbares/' + String(id)).pipe(
@@ -24,7 +24,7 @@ export  class ReservarService {
 
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        // 'Authorization': 'JWT ' + this.suservice.token    // this is our token from the UserService (see Part 1)
+        'Authorization' : 'JWT ' + this.auService.token    // this is our token from the UserService (see Part 1)
       })
     };
 

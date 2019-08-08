@@ -1,1 +1,59 @@
-<p>reserva-b works!</p>
+<div class= "section">
+        <h2 class="subtitle"> Haga su reserva</h2>
+        <div class="list is-hoverable">
+        <p class="list-item" >
+         Nombre: {{bar.nombre}}
+        </p>
+        <p class="list-item" >
+         Tipo: {{bar.tipo}}
+        </p>
+        <p class="list-item" >
+         Direccion: {{bar.direccion}}
+        </p>
+        </div>
+         <div class="columms">
+          <div class="column is-multiline"  *ngFor="let mesa of bar.MesaD">
+           <p> Mesa Numero :{{mesa.numero}}</p>
+           <p> Capacidad :{{mesa.capacidad}}</p>
+            <div class="block">
+              <a class="button is-primary" (click)="selectMesa(mesa.numero,mesa.capacidad)">Seleccionar Mesa</a>
+            </div>
+          </div>
+         </div>
+        </div>
+        <article class="message is-warning" *ngIf="!seleccion">
+                <div class="message-header">
+                  <p>Atencion</p>
+                </div>
+                <div class="message-body">
+                  Para hacer una reserva seleccione una mesa primero
+                </div>
+              </article>
+         
+              <section class="section" *ngIf="seleccion">
+            <div class="container">
+              <div class="heading">
+                <h3 class="subtitle"> Seleccione su horario animal</h3>
+                <form (ngSubmit)="createReserva()" #f="ngForm">
+                          <div class="field">
+                              <label class="label" for="dia">Dia de la Reserva:</label>
+                              <input
+                              type="date"
+                              id="dia"
+                              class="input"
+                              ngModel
+                              name="dia"
+                              required>
+                            </div>
+                        <div class="field">
+                        <label class="label">Cantidad de Personas:</label>  <br>
+                        <input type="text" name="cant" class="input" required ngModel>
+                        <input type="submit" [disabled]="!f.valid">
+                    </div>
+                   </form>
+              </div>
+            </div>
+          </section>
+        
+        
+        

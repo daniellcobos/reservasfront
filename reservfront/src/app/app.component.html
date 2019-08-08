@@ -1,4 +1,4 @@
-   <nav class="navbar is-multiline">
+   <nav class="navbar is-multiline is-dark">
     <div class="navbar-brand">
       <h2 class="navbar-item"> Reservas </h2>
     </div>
@@ -7,12 +7,15 @@
        <a class="navbar-item" routerLink="/bares"> Bares </a> 
     </div>
     <div class="navbar-end">
-     <div class="navbar-item">
-       <a> Cree una Cuenta </a>
+     <div class="navbar-item" >
+       <a routerLink="/registro" *ngIf="!log"> Cree una Cuenta </a>
       </div>
-      <div class="navbar-item">
-       <a> Inicie Sesion </a>
+      <div class="navbar-item" *ngIf="!log">
+       <a routerLink="/login"> Inicie Sesion </a>
       </div>
+      <div class="navbar-item" *ngIf="log">
+        <p>Ingreso Como:</p><a routerLink="usuario/{{auService.id}}">  {{auService.username}} </a>
+       </div>
     </div>
     </nav>
 <router-outlet></router-outlet>

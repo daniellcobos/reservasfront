@@ -10,6 +10,11 @@ import { ReservaRComponent} from './restaurante/reserva-r/reserva-r.component';
 import { AuthComponent } from './auth/auth.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { UsuarioComponent } from './usuario/usuario.component';
+import { AuthService } from 'src/app/auth/auth.service';
+import { HomeComponent } from './home/home.component';
+import { RegistroComponent } from './registro/registro.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +22,10 @@ import { FormsModule } from '@angular/forms';
     BarComponent,
     ReservaBComponent,
     ReservaRComponent,
-    AuthComponent
+    AuthComponent,
+    UsuarioComponent,
+    HomeComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +34,7 @@ import { FormsModule } from '@angular/forms';
     RouterModule,
     FormsModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

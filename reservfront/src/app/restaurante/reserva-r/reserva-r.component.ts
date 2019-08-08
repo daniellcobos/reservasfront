@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ReservarService } from './reservar.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { AuthService } from 'src/app/auth/auth.service';
 @Component({
   selector: 'app-reserva-r',
   templateUrl: './reserva-r.component.html',
@@ -13,8 +14,9 @@ export class ReservaRComponent implements OnInit {
   nombre = '';
   mesa = {id: 0, restaurante: '0', capacidad: 0};
   seleccion = false;
-  constructor(private rservice: ReservarService, private route: ActivatedRoute) { }
+  constructor(private rservice: ReservarService, private route: ActivatedRoute, private auService: AuthService) { }
   ap = 'reservar';
+  id = this.auService.id;
   ngOnInit() {
     this.route.params.subscribe(
       (params: Params) => {
@@ -26,7 +28,7 @@ export class ReservaRComponent implements OnInit {
            console.log(this.restaurante);
           }
      );
-    }); 
+    });
   }
   selectMesa(mid: number, cap: number ) {
    this.mesa.id = mid;
@@ -39,7 +41,7 @@ export class ReservaRComponent implements OnInit {
     const diar = this.reservForm.value.dia;
     const horar = this.reservForm.value.hora;
     const cantidadr = this.reservForm.value.cant;
-    const reserva = {reservante: 1, diaReservado: diar, horaReservada: horar, cantidad: cantidadr, mesa: this.mesa.id};
+    const reserva = {reservante: this.id, diaReservado: diar, horaReservada: horar, cantidad: cantidadr, mesa: this.mesa.id};
     console.log(reserva);
     this.rservice.makeReserva(reserva);
   }
