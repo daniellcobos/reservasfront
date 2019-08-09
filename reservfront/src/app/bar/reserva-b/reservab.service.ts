@@ -33,8 +33,20 @@ export class ReservabService {
       (response) => console.log(response),
       (error) => console.log(error.error)
     );
-
-
-
   }
+  deleteReservab(id: number) {
+    const httpOptions = {
+
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization' : 'JWT ' + this.auService.token    // this is our token from the UserService (see Part 1)
+      })
+    };
+
+
+    return this.http.delete('http://localhost:8000/rsv/brb/' + String(id) , httpOptions) .subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error.error)
+    );
+}
 }

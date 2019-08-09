@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from './usuario.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ReservarService } from '../restaurante/reserva-r/reservar.service';
+import { ReservabService } from '../bar/reserva-b/reservab.service';
 @Component({
   selector: 'app-usuario',
   templateUrl: './usuario.component.html',
@@ -8,7 +10,12 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class UsuarioComponent implements OnInit {
   usuario = {nombre: 'string', ciudad: '', fondos: 0, email: '' };
-  constructor(private uService: UsuarioService, private route: ActivatedRoute) { }
+  constructor(
+    private uService: UsuarioService,
+    private route: ActivatedRoute,
+    private rbService: ReservabService,
+    private rrService: ReservarService, 
+    private router: Router ) { }
   ap = 'id';
   reservasd = [];
   reservasbr = [];
@@ -21,12 +28,20 @@ export class UsuarioComponent implements OnInit {
            this.usuario = data;
            this.reservasd = data.ReservH;
            this.reservasbr = data.ReservBR;
-           console.log(this.usuario);
-           console.log(this.reservasd);
-           console.log(this.reservasbr);
           }
      );
     });
   }
-
+  borrarBreserva(id: number) {
+    this.rbService.deleteReservab(id);
+    setTimeout(() =>  {this.router.navigate(['']);
+    }, 80
+    );
+  }
+  borrarRreserva(id: number) {
+    this.rrService.deleteReservar(id);
+    setTimeout(() =>  {this.router.navigate(['']);
+    }, 80
+    );
+  }
 }

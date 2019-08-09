@@ -22,7 +22,7 @@
          <p> Dia : {{reserva.diaReservado}}</p>
          <p> Hora : {{reserva.horaReservada}}</p>
           <div class="block">
-            <a class="button is-danger">Cancelar Reserva</a>
+            <a class="button is-danger" (click)="borrarRreserva(reserva.id)">Cancelar Reserva</a>
           </div>
         </div>
        </div>
@@ -35,7 +35,7 @@
              <p> Mesa Numero : {{reserva.mesad.numero}}</p>
              <p> Dia : {{reserva.diaReservado}}</p>
               <div class="block">
-                <a class="button is-danger">Cancelar Reserva</a>
+                <a class="button is-danger" (click)="borrarBreserva(reserva.id)">Cancelar Reserva</a>
               </div>
             </div>
            </div>

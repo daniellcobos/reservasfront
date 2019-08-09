@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ReservarService } from './reservar.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/auth/auth.service';
 @Component({
@@ -14,7 +14,7 @@ export class ReservaRComponent implements OnInit {
   nombre = '';
   mesa = {id: 0, restaurante: '0', capacidad: 0};
   seleccion = false;
-  constructor(private rservice: ReservarService, private route: ActivatedRoute, private auService: AuthService) { }
+  constructor(private rservice: ReservarService, private route: ActivatedRoute, private auService: AuthService, private router: Router) { }
   ap = 'reservar';
   id = this.auService.id;
   ngOnInit() {
@@ -44,5 +44,8 @@ export class ReservaRComponent implements OnInit {
     const reserva = {reservante: this.id, diaReservado: diar, horaReservada: horar, cantidad: cantidadr, mesa: this.mesa.id};
     console.log(reserva);
     this.rservice.makeReserva(reserva);
+    setTimeout(() =>  {this.router.navigate(['']);
+    }, 80
+    );
   }
 }
