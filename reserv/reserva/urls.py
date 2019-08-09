@@ -14,6 +14,8 @@ urlpatterns = [
     path('restbares', views.RestBarList.as_view()),
     path('discbares/<int:pk>', views.HotelDetail.as_view()),
     path('restbares/<int:pk>', views.RestBarDetail.as_view()),
+    path('brr/<int:pk>', views.borrarreservabr),
+    path('brb/<int:pk>', views.borrarreservad),
     path('api-auth/', include('rest_framework.urls')),
     path('api-token-auth/', obtain_jwt_token),
     path('api-token-refresh/', refresh_jwt_token),

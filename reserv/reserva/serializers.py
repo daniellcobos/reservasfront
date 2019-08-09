@@ -29,10 +29,10 @@ class HabitacionSerializer(serializers.ModelSerializer):
         model = MesaD
         fields = '__all__'
 class HotelSerializer(serializers.ModelSerializer):
-    mesad = HabitacionSerializer(many=True,read_only=True)
+    MesaD = HabitacionSerializer(many=True,read_only=True)
     class Meta:
         model = Discobar
-        fields = ('nombre','tipo','ciudad','direccion','mesad')
+        fields = ('nombre','tipo','ciudad','direccion','MesaD')
 class RBSerializer(serializers.ModelSerializer):
     mesa = MesaSerializer(many=True,read_only=True)
     class Meta:
@@ -42,12 +42,12 @@ class ReservHSerializer(serializers.ModelSerializer):
     mesad =HabitacionSerializer(read_only=True)
     class Meta:
         model = ReservaD
-        fields = ('diaReserva','diaReservado','cantidad','mesad')
+        fields = ('id','diaReserva','diaReservado','cantidad','mesad')
 class ReservBRSerializer(serializers.ModelSerializer):
-    mesa = MesaSerializer(many=True,read_only=True)
+    mesa = MesaSerializer(read_only=True)
     class Meta:
         model = ReservaBR
-        fields = ('diaReserva','diaReservado','horaReservada','cantidad','mesa')
+        fields = ('id','diaReserva','diaReservado','horaReservada','cantidad','mesa')
 class InduserSerializer(serializers.ModelSerializer):
     ReservH = ReservHSerializer(many=True,read_only=True)
     ReservBR = ReservBRSerializer(read_only=True,many=True,)
@@ -109,9 +109,10 @@ class ReservBReSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id','email','name','fondos','ciudad','password')
+        fields = ('id','username','email','name','fondos','ciudad','password','admin')
         extra_kwargs = {
           'password': {'write_only': True}
+          
         }
     def create(self, validated_data):
         password = validated_data.pop('password', None)

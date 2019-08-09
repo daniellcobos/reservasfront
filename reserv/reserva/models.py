@@ -1,6 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-
+from django.http import HttpResponseForbidden
 class User(AbstractUser):
     name = models.CharField(blank=True, max_length=255)
     fondos = models.IntegerField(blank=True, default=0)
@@ -49,12 +49,15 @@ class CapacidadBR(models.Model):
     hora = models.TimeField( auto_now=False, auto_now_add=False)
     libre = models.BooleanField(default=True)
     mesa = models.ForeignKey(Mesa, related_name='CapacidadBR', on_delete=models.CASCADE)
+    
 class ReservaD(models.Model):
     reservante = models.ForeignKey(User,related_name='ReservH', on_delete=models.CASCADE)
     diaReserva = models.DateTimeField(  auto_now_add=True)
     diaReservado = models.DateField( auto_now=False, auto_now_add=False)
     cantidad = models.IntegerField(default=0)
     mesad = models.ForeignKey(MesaD, related_name='ReservaDis', on_delete=models.CASCADE)
+    def __str__(self):
+        return str(self.id)
 class ReservaBR(models.Model):
     reservante = models.ForeignKey(User,related_name='ReservBR', on_delete=models.CASCADE)
     diaReserva = models.DateTimeField( auto_now_add=True)
