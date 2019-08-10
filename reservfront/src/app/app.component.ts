@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 export class AppComponent implements OnInit {
   log: boolean;
   title = 'reservfront';
-  constructor(private auService: AuthService) {
+  constructor(public auService: AuthService) {
     auService.log.subscribe(
       (onMain) => {
         this.log = onMain;

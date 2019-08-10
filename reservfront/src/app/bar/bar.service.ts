@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export default class BarService {
+export  class BarService {
 
   constructor(private http: HttpClient) { }
 

@@ -14,7 +14,7 @@ export class AuthComponent implements OnInit {
   user: {email: string, password: string};
   loggeduser: {};
   defaultid = 0;
-  constructor(private auService: AuthService, private router: Router) { }
+  constructor(public auService: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.user = {

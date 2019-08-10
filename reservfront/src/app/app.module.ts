@@ -15,6 +15,8 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { HomeComponent } from './home/home.component';
 import { RegistroComponent } from './registro/registro.component';
 import { CanActivateGuard } from './auth/auth.guard';
+import {RestauranteService} from './restaurante/restaurante.service';
+import {BarService} from './bar/Bar.service';
 @NgModule({
   declarations: [
     AppComponent,

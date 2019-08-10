@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "reservhost": "reservhost",
+    "default": "reservhost"
+  }
+}

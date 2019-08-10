@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import BarService from './Bar.service';
+import {BarService} from './bar.service';
 import Bar from './bar.model';
 @Component({
   selector: 'app-bar',

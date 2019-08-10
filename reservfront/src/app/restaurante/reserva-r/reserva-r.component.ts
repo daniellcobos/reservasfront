@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class ReservaRComponent implements OnInit {
   @ViewChild('f', {static: false}) reservForm: NgForm;
-  restaurante = {};
+  restaurante: any;
   nombre = '';
   mesa = {id: 0, restaurante: '0', capacidad: 0};
   seleccion = false;
@@ -19,7 +19,7 @@ export class ReservaRComponent implements OnInit {
   constructor(private rservice: ReservarService, private route: ActivatedRoute, private auService: AuthService, private router: Router) { }
   ap = 'reservar';
   id = this.auService.id;
-  message = {};
+  message: any;
   badrequest = false;
   ngOnInit() {
     this.route.params.subscribe(
