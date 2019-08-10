@@ -33,7 +33,8 @@
       <section class="section" *ngIf="seleccion">
     <div class="container">
       <div class="heading">
-        <h3 class="subtitle"> Seleccione su horario animal</h3>
+        <h3 class="subtitle"> Seleccione su horario</h3>
+        <span *ngIf="badrequest"  class="notification is-danger">{{message.non_field_errors}}</span>
         <form (ngSubmit)="createReserva()" #f="ngForm">
                 <div class="field">
                     <label class="label" for="hora">Hora de la Reserva</label>

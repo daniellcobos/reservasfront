@@ -80,6 +80,7 @@ export class AuthService {
     this.tokenExpires = new Date(tokenDecoded.exp * 1000);
     this.username = tokenDecoded.email;
     this.id = tokenDecoded.user_id;
+ 
   }
   islogged() {
     const promise = new Promise(

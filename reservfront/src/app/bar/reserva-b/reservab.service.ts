@@ -29,10 +29,9 @@ export class ReservabService {
     };
 
 
-    return this.http.post('http://localhost:8000/rsv/reservd', reserva , httpOptions) .subscribe(
-      (response) => console.log(response),
-      (error) => console.log(error.error)
-    );
+    return this.http.post('http://localhost:8000/rsv/reservd', reserva , httpOptions)  .pipe(map(
+      (response) => response
+    ));
   }
   deleteReservab(id: number) {
     const httpOptions = {

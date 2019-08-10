@@ -8,6 +8,7 @@ import { AuthComponent } from './auth/auth.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { HomeComponent } from './home/home.component';
 import { RegistroComponent } from './registro/registro.component';
+import { CanActivateGuard } from './auth/auth.guard';
 const routes: Routes = [
   {path: 'restaurantes', component: RestauranteComponent,children:
   [{path: ':reservar', component: ReservaRComponent}]
@@ -15,7 +16,7 @@ const routes: Routes = [
   {path: 'bares', component: BarComponent, children:
   [{path: ':reservar', component: ReservaBComponent}]},
   {path: 'login', component: AuthComponent},
-  {path: 'usuario/:id', component: UsuarioComponent},
+  {path: 'usuario/:id', component: UsuarioComponent, canActivate: [CanActivateGuard]},
   {path: '', component: HomeComponent},
   {path: 'registro', component: RegistroComponent}
 ];

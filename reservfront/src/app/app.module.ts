@@ -14,7 +14,7 @@ import { UsuarioComponent } from './usuario/usuario.component';
 import { AuthService } from 'src/app/auth/auth.service';
 import { HomeComponent } from './home/home.component';
 import { RegistroComponent } from './registro/registro.component';
-
+import { CanActivateGuard } from './auth/auth.guard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +34,7 @@ import { RegistroComponent } from './registro/registro.component';
     RouterModule,
     FormsModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, CanActivateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

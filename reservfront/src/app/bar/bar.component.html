@@ -1,7 +1,9 @@
+<div class="container">
+    <div class="list is-hoverable">
+        <a class="list-item" *ngFor="let bar of bares" routerLink="/bares/{{bar.id}}">
+         {{bar.nombre}}
+        </a>
+        </div>
+    </div>
+        <router-outlet></router-outlet>
 
-<div class="list is-hoverable">
-<a class="list-item" *ngFor="let bar of bares" routerLink="/bares/{{bar.id}}">
- {{bar.nombre}}
-</a>
-</div>
-<router-outlet></router-outlet>

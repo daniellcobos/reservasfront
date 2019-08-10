@@ -29,10 +29,9 @@ export  class ReservarService {
     };
 
 
-    return this.http.post('http://localhost:8000/rsv/reservbr', reserva , httpOptions) .subscribe(
-      (response) => console.log(response),
-      (error) => console.log(error.error)
-    );
+    return this.http.post('http://localhost:8000/rsv/reservbr', reserva , httpOptions) .pipe(map(
+      (response) => response
+    ));
   }
   deleteReservar(id: number) {
     const httpOptions = {

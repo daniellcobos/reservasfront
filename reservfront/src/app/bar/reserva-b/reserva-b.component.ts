@@ -18,6 +18,8 @@ export class ReservaBComponent implements OnInit {
   constructor(private rservice: ReservabService, private route: ActivatedRoute, private auService: AuthService, private router: Router) { }
   ap = 'reservar';
   id = this.auService.id;
+  message = {};
+  badrequest = false;
   ngOnInit() {
     this.route.params.subscribe(
       (params: Params) => {
@@ -43,10 +45,16 @@ export class ReservaBComponent implements OnInit {
     const cantidadr = this.reservForm.value.cant;
     const reserva = {reservante: this.id, diaReservado: diar , cantidad: cantidadr, mesad: this.mesa.id};
     console.log(reserva);
-    this.rservice.makeReserva(reserva);
-    setTimeout(() =>  {this.router.navigate(['']);
-    }, 80
-    );
+    this.rservice.makeReserva(reserva).subscribe(
+      (data: any) => {
+        this.message = data;
+        this.badrequest = false;
+
+      },
+      (error) =>  {
+        this.badrequest = true;
+        this.message = error.error; }
+   );
   }
 
 }

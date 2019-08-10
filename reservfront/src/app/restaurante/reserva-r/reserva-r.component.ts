@@ -3,6 +3,7 @@ import { ReservarService } from './reservar.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/auth/auth.service';
+
 @Component({
   selector: 'app-reserva-r',
   templateUrl: './reserva-r.component.html',
@@ -14,9 +15,12 @@ export class ReservaRComponent implements OnInit {
   nombre = '';
   mesa = {id: 0, restaurante: '0', capacidad: 0};
   seleccion = false;
+  messages = {};
   constructor(private rservice: ReservarService, private route: ActivatedRoute, private auService: AuthService, private router: Router) { }
   ap = 'reservar';
   id = this.auService.id;
+  message = {};
+  badrequest = false;
   ngOnInit() {
     this.route.params.subscribe(
       (params: Params) => {
@@ -43,9 +47,17 @@ export class ReservaRComponent implements OnInit {
     const cantidadr = this.reservForm.value.cant;
     const reserva = {reservante: this.id, diaReservado: diar, horaReservada: horar, cantidad: cantidadr, mesa: this.mesa.id};
     console.log(reserva);
-    this.rservice.makeReserva(reserva);
-    setTimeout(() =>  {this.router.navigate(['']);
-    }, 80
+    this.rservice.makeReserva(reserva).subscribe(
+       (data: any) => {
+         this.message = data;
+         this.badrequest = false;
+
+       },
+       (error) =>  {
+         this.badrequest = true;
+         this.message = error.error; }
     );
   }
 }
+
+
