@@ -17,6 +17,7 @@ import { RegistroComponent } from './registro/registro.component';
 import { CanActivateGuard } from './auth/auth.guard';
 import {RestauranteService} from './restaurante/restaurante.service';
 import {BarService} from './bar/Bar.service';
+import { AdminComponent } from './admin/admin.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +28,8 @@ import {BarService} from './bar/Bar.service';
     AuthComponent,
     UsuarioComponent,
     HomeComponent,
-    RegistroComponent
+    RegistroComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

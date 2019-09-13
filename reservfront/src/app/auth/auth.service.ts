@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 
 import { Observable, observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -35,24 +36,25 @@ export class AuthService {
 
   // Uses http.post() to get an auth token from djangorestframework-jwt endpoint
   public login(user) {
-    console.log(user);
-    this.http.post('http://localhost:8000/rsv/api-token-auth/', JSON.stringify(user), this.httpOptions).subscribe(
+    
+    return this.http.post('https://danreservas.herokuapp.com/rsv/api-token-auth/', JSON.stringify(user), this.httpOptions).pipe(map(
       data => {
 
         this.updateData(data['token']);
-        console.log(data);
+        return data;
       },
       err => {
         this.errors = err['error'];
-        console.log(this.errors)
+        return this.errors;
       }
-    );
+    ));
 
   }
 
   // Refreshes the JWT token, to extend the time the user is logged in
   public refreshToken() {
-    this.http.post('http://localhost:8000/rsv/api-token-refresh/', JSON.stringify({token: this.token}), this.httpOptions).subscribe(
+    this.http.post('https://danreservas.herokuapp.com/rsv/api-token-refresh/', 
+    JSON.stringify({token: this.token}), this.httpOptions).subscribe(
       data => {
         this.updateData(data['token']);
         console.log(this.updateData(data['token']) );

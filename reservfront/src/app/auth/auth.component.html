@@ -4,12 +4,12 @@
         <h3> Inicio de Sesion</h3>
       <div class="col-sm-4">
         <label>Nombre del Usuario:</label><br />
-        <input type="text" name="loginemail" [(ngModel)]="user.email">
+        <input class="input" type="text" name="loginemail" [(ngModel)]="user.email">
         <span *ngFor="let error of auService.errors.username"><br />
         {{ error }}</span></div>
       <div class="col-sm-4">
         <label>Contraseña:</label><br />
-        <input type="password" name="loginpassword" [(ngModel)]="user.password">
+        <input  class="input" type="password" name="loginpassword" [(ngModel)]="user.password">
         <span *ngFor="let error of auService.errors.password"><br />
         {{ error }}</span>
         
@@ -20,16 +20,17 @@
       <div class="col-sm-12">
         <span *ngFor="let error of auService.errors.non_field_errors">{{ error }}<br /></span>
       </div>
+      <span *ngIf="badrequest"  class="notification is-danger">{{message.non_field_errors}}</span>
     </div>
     <div class="row" *ngIf="!auService.loggedin">
         
         <div class="col-sm-4 ">
-              <button (click)="login()" class="btn btn-primary">Acceder</button>
+              <button class="button" (click)="login()" class="btn btn-primary">Acceder</button>
         </div>
         
       
     </div>
-    <div class="row" *ngIf="auService.token">
+    <div class="section" *ngIf="auService.token">
       <div class="col-sm-12"> Ha accedido como {{ auService.username }}.<br />
         La sesion expirara el: {{ auService.tokenExpires }}<br />
         Id de usuario: {{auService.id}} <br/>

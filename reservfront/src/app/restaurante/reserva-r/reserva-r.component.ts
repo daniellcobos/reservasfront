@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 export class ReservaRComponent implements OnInit {
   @ViewChild('f', {static: false}) reservForm: NgForm;
   restaurante: any;
+
   nombre = '';
   mesa = {id: 0, restaurante: '0', capacidad: 0};
   seleccion = false;

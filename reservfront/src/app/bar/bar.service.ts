@@ -11,7 +11,7 @@ export  class BarService {
   constructor(private http: HttpClient) { }
 
   getBares() {
-    return this.http.get('http://localhost:8000/rsv/discbares').pipe(
+    return this.http.get('https://danreservas.herokuapp.com/rsv/discbares').pipe(
       map(
         (response: Response) => {
           const restsserver = response;
@@ -19,8 +19,18 @@ export  class BarService {
         }
       )
     );
+  }
 
+  makeBar(bar: object) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+    return this.http.post('https://danreservas.herokuapp.com/rsv/discbares', bar, httpOptions).subscribe(
+     (response) => console.log(response),
+     (error) => console.log(error.error)
+   );
+  }
 
-
-}
 }

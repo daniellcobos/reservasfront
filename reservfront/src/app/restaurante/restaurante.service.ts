@@ -11,7 +11,7 @@ export class RestauranteService {
   constructor(private http: HttpClient) { }
 
   getRestaurantes() {
-    return this.http.get('http://localhost:8000/rsv/restbares').pipe(
+    return this.http.get('https://danreservas.herokuapp.com/rsv/restbares').pipe(
       map(
         (response: Response) => {
           const restsserver = response;
@@ -19,8 +19,17 @@ export class RestauranteService {
         }
       )
     );
+  }
 
-
-
-}
+  makeRestaurante(restaurante: object) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+    return this.http.post('https://danreservas.herokuapp.com/rsv/restbares', restaurante, httpOptions).subscribe(
+     (response) => console.log(response),
+     (error) => console.log(error.error)
+   );
+  }
 }

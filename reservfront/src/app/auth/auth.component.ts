@@ -14,6 +14,8 @@ export class AuthComponent implements OnInit {
   user: {email: string, password: string};
   loggeduser: {};
   defaultid = 0;
+  message: any;
+  badrequest = false;
   constructor(public auService: AuthService, private router: Router) { }
 
   ngOnInit() {
@@ -23,11 +25,23 @@ export class AuthComponent implements OnInit {
     };
   }
   login() {
-    this.auService.login({username: this.user.email, password: this.user.password});
-    setTimeout(() =>  {this.router.navigate(['']);
-    }, 100
+    const user = {username: this.user.email, password: this.user.password}
+    this.auService.login(user).subscribe(
+      (data: any) => {
+        this.message = data;
+        this.badrequest = false;
+        this.auService.log.emit(true);
+        setTimeout(() => {
+          this.router.navigate(['usuario', this.auService.id]);
+        }, 100);
+
+      },
+      (error) =>  {
+        this.message = error.error;
+        this.badrequest = true;
+        this.auService.log.emit(false); }
     );
-    this.auService.log.emit(true);
+
   }
 
   refreshToken() {

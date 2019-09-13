@@ -1,0 +1,120 @@
+<div class="container">
+    <div class="block">
+        <a class="button is-primary" (click)="toggleRestr()">Registrar Restaurante</a>
+      </div>
+      <div class="block">
+        <a class="button is-primary" (click)="toggleBar()">Registrar Bar</a>
+      </div>
+</div>
+
+
+
+
+
+
+
+<div class="container" *ngIf="crearest">
+    <h2 class="subtitle">Registro de Negocio</h2>
+         <div class="row">
+             <div class="col-xs-12 col-sm-4">
+           <form (ngSubmit)="registrarRest()" #r="ngForm" >
+               <div class="field">
+                   <label class="label" for="nombre">Nombre del Restaurante: </label>
+                   <input
+                   type="text"
+                   id="nombre"
+                   class="input"
+                   ngModel
+                   name="nombre">
+                 </div>
+             <div class="field">
+               <label class="label" for="ciudad">Ciudad </label>
+               <input
+               type="text"
+               id="ciudad"
+               class="input"
+               ngModel
+               name="ciudad">
+             </div>
+             <div class="field">
+                <label class="label" for="tipo">Tipo de restaurante </label>
+                <input
+                type="text"
+                id="tipo"
+                class="input"
+                ngModel
+                name="tipo">
+              </div>
+              <div class="field">
+                <label class="label" for="direccion">Direccion del Restaurante </label>
+                <input
+                type="text"
+                id="direccion"
+                class="input"
+                ngModel
+                name="direccion">
+              </div>
+             
+            
+             <button
+             class="btn btn-primary"
+             type="submit"
+             [disabled]="!r.valid"
+             >Registre el restaurante</button>
+           </form>
+         </div>
+       </div>
+        </div>
+<div class="container" *ngIf="creabar">
+            <h2 class="subtitle">Registro de Negocio</h2>
+                 <div class="row">
+                     <div class="col-xs-12 col-sm-4">
+                   <form (ngSubmit)="registrarBar()" #b="ngForm" >
+                       <div class="field">
+                           <label class="label" for="nombre">Nombre del Bar: </label>
+                           <input
+                           type="text"
+                           id="nombre"
+                           class="input"
+                           ngModel
+                           name="nombre">
+                         </div>
+                     <div class="field">
+                       <label class="label" for="ciudad">Ciudad </label>
+                       <input
+                       type="text"
+                       id="ciudad"
+                       class="input"
+                       ngModel
+                       name="ciudad">
+                     </div>
+                     <div class="field">
+                        <label class="label" for="tipo">Tipo de Bar </label>
+                        <input
+                        type="text"
+                        id="tipo"
+                        class="input"
+                        ngModel
+                        name="tipo">
+                      </div>
+                      <div class="field">
+                        <label class="label" for="direccion">Direccion del Bar </label>
+                        <input
+                        type="text"
+                        id="direccion"
+                        class="input"
+                        ngModel
+                        name="direccion">
+                      </div>
+                     
+                    
+                     <button
+                     class="btn btn-primary"
+                     type="submit"
+                     [disabled]="!b.valid"
+                     >Registre el Bar</button>
+                   </form>
+                 </div>
+               </div>
+</div>
+                     

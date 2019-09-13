@@ -14,7 +14,10 @@
        <a routerLink="/login"> Inicie Sesion </a>
       </div>
       <div class="navbar-item" *ngIf="log">
-        <p>Ingreso Como:</p><a routerLink="usuario/{{auService.id}}">  {{auService.username}} </a>
+        <p>Ha ingresado como: <a routerLink="usuario/{{auService.id}}">{{auService.username}} </a> </p>
+       </div>
+       <div class="navbar-item" *ngIf="log">
+        <p (click)="cerrar()"> Cierre Sesion </p>
        </div>
     </div>
     </nav>

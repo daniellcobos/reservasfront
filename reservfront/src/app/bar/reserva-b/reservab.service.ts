@@ -10,7 +10,7 @@ export class ReservabService {
   constructor(private http: HttpClient, private auService: AuthService) { }
 
   getBar(id: number) {
-    return this.http.get('http://localhost:8000/rsv/discbares/' + String(id)).pipe(
+    return this.http.get('https://danreservas.herokuapp.com/rsv/discbares/' + String(id)).pipe(
       map(
         (response: Response) => {
           const barserver = response;
@@ -29,7 +29,7 @@ export class ReservabService {
     };
 
 
-    return this.http.post('http://localhost:8000/rsv/reservd', reserva , httpOptions)  .pipe(map(
+    return this.http.post('https://danreservas.herokuapp.com/rsv/reservd', reserva , httpOptions)  .pipe(map(
       (response) => response
     ));
   }
@@ -43,9 +43,10 @@ export class ReservabService {
     };
 
 
-    return this.http.delete('http://localhost:8000/rsv/brb/' + String(id) , httpOptions) .subscribe(
+    return this.http.delete('https://danreservas.herokuapp.com/rsv/brb/' + String(id) , httpOptions) .subscribe(
       (response) => console.log(response),
       (error) => console.log(error.error)
     );
-}
+  }
+
 }

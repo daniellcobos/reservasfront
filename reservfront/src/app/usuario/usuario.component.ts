@@ -9,7 +9,7 @@ import { ReservabService } from '../bar/reserva-b/reservab.service';
   styleUrls: ['./usuario.component.css']
 })
 export class UsuarioComponent implements OnInit {
-  usuario = {nombre: 'string', ciudad: '', fondos: 0, email: '' };
+  usuario = {nombre: 'string', ciudad: '', fondos: 0, email: '' , admin: null};
   constructor(
     private uService: UsuarioService,
     private route: ActivatedRoute,
