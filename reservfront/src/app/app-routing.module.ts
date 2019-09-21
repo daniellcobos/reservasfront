@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { RegistroComponent } from './registro/registro.component';
 import { CanActivateGuard } from './auth/auth.guard';
 import { AdminComponent} from './admin/admin.component';
+import { AdmirestauranteComponent } from './admirestaurante/admirestaurante.component';
 
 const routes: Routes = [
   {path: 'restaurantes', component: RestauranteComponent,children:
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'registro', component: RegistroComponent},
   {path: 'admin', component: AdminComponent, canActivate: [CanActivateGuard]},
+  {path: 'admir/:id', component: AdmirestauranteComponent, canActivate: [CanActivateGuard]}
 ];
 
 @NgModule({

@@ -19,6 +19,8 @@ export class UsuarioComponent implements OnInit {
   ap = 'id';
   reservasd = [];
   reservasbr = [];
+  bares = [];
+  restaurantes = [];
   ngOnInit() {
     this.route.params.subscribe(
       (params: Params) => {
@@ -28,6 +30,8 @@ export class UsuarioComponent implements OnInit {
            this.usuario = data;
            this.reservasd = data.ReservH;
            this.reservasbr = data.ReservBR;
+           this.restaurantes = data.Dueñob;
+           this.bares = data.Dueñod;
           }
      );
     });

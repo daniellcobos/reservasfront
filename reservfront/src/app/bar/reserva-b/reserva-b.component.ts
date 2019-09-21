@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 export class ReservaBComponent implements OnInit {
 
   @ViewChild('f', {static: false}) reservForm: NgForm;
-  bar: any;
+  bar = {nombre: 'La Base', tipo: 'Antro', ciudad: 'Bogota', direccion: 'Calle 41 con Caracas', MesaD: []};
   nombre = '';
   mesa = {id: 0, restaurante: '0', capacidad: 0};
   seleccion = false;
@@ -27,6 +27,7 @@ export class ReservaBComponent implements OnInit {
          this.rservice.getBar(furl).subscribe(
           (data: any) => {
            this.bar = data;
+           this.bar.MesaD = data.MesaD;
            this.nombre = data.nombre;
            console.log(this.bar);
           }

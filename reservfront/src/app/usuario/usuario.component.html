@@ -35,7 +35,7 @@
              <p> Mesa Numero : {{reserva.mesad.numero}}</p>
              <p> Dia : {{reserva.diaReservado}}</p>
               <div class="block">
-                <a class="button is-danger" (click)="borrarBreserva(reserva.id)">Cancelar Reserva</a>
+                <a id="reg" class="button" (click)="borrarBreserva(reserva.id)">Cancelar Reserva</a>
               </div>
             </div>
            </div>
@@ -43,8 +43,25 @@
    <body>
      <section class="section">
        
-        <a routerLink="/admin"> Registre su Negocio </a>
+        <a id="reg" class="button" routerLink="/admin"> Registre su Negocio </a>
        
+     </section>
+     <section class="section">
+        <p> Administracion de Bares:</p> <br>
+      <div class="columns">
+        <div class="column is-multiline" *ngFor="let bar of bares" id="bar" routerLink="/bares/{{bar.id}}">
+         {{bar.nombre}}
+        </div>
+      </div>
+      
+     </section>
+     <section class="section">
+       <p> Administracion de Restaurantes:</p> <br>
+      <div class="columns">
+        <div class="column is-multiline" *ngFor="let rest of restaurantes" id="rest" routerLink="/admir/{{rest.id}}">
+         {{rest.nombre}}
+        </div>
+      </div>
      </section>
    </body>
 </body>

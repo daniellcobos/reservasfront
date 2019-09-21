@@ -18,6 +18,8 @@ import { CanActivateGuard } from './auth/auth.guard';
 import {RestauranteService} from './restaurante/restaurante.service';
 import {BarService} from './bar/Bar.service';
 import { AdminComponent } from './admin/admin.component';
+import { AdmirestauranteComponent } from './admirestaurante/admirestaurante.component';
+import { AdmibarComponent } from './admibar/admibar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +31,9 @@ import { AdminComponent } from './admin/admin.component';
     UsuarioComponent,
     HomeComponent,
     RegistroComponent,
-    AdminComponent
+    AdminComponent,
+    AdmirestauranteComponent,
+    AdmibarComponent
   ],
   imports: [
     BrowserModule,
